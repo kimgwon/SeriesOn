@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // 데이터를 가져오는 로직
+        if let csvFilePath = Bundle.main.path(forResource: "movies_metadata", ofType: "csv") {
+            let movies = DataParser.parseMoviesData(fromCSVFile: csvFilePath)
+
+            // 가져온 데이터를 활용하여 원하는 동작을 수행하거나 콘솔에 출력
+            for movie in movies {
+                print(movie)
+            }
+        } else {
+            print("Failed to find movies_metadata.csv")
+        }
+
         return true
     }
 
