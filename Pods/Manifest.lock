@@ -1,0 +1,20 @@
+PODS:
+  - DropDown (2.3.13)
+  - SwiftCSV (0.8.1)
+
+DEPENDENCIES:
+  - DropDown
+  - SwiftCSV
+
+SPEC REPOS:
+  trunk:
+    - DropDown
+    - SwiftCSV
+
+SPEC CHECKSUMS:
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  SwiftCSV: cfe1bee1b37ada48f065e8e12cb43dce9b4bdc1b
+
+PODFILE CHECKSUM: 1292f48e7cf1e846a75950cb289fb55ca2bbc75e
+
+COCOAPODS: 1.12.1

@@ -1,6 +1,8 @@
 import UIKit
+import DropDown
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     let AD = UIApplication.shared.delegate as? AppDelegate
     @IBOutlet weak var movieGroupTableView: UITableView!
     var movies: [Movie] = [] // 영화 데이터를 담을 배열
@@ -17,8 +19,33 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.movies = movies
         }
         
+        movieGroupTableView.rowHeight = 120
         movieGroupTableView.delegate = self
         movieGroupTableView.dataSource = self
+    }
+    
+    func sort(){
+        // Sort movies array by popularity in descending order
+        movies.sort { $0.popularity > $1.popularity }
+        // Reload the table view to display the sorted data
+        movieGroupTableView.reloadData()
+    }
+    
+    func setSegment(){
+        // UISegmentedControl의 설정
+        let selectedAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.white
+        ]
+        
+        let normalAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.gray
+        ]
+        
+        segmentedControl.setTitleTextAttributes(selectedAttributes, for: .selected)
+        segmentedControl.setTitleTextAttributes(normalAttributes, for: .normal)
+        
+        segmentedControl.backgroundColor = UIColor.clear
+        segmentedControl.tintColor = UIColor.white
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

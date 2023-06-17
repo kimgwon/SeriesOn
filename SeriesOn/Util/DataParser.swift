@@ -16,13 +16,13 @@ class DataParser {
             if let jsonArray = jsonArray {
                 for jsonItem in jsonArray {
                     let movie = Movie(
-                        id: Int(jsonItem["id"] as? String ?? "") ?? -1,
-                        budget: Int(jsonItem["budget"] as? String ?? "") ?? -1,
+                        id: jsonItem["id"] as? Int ?? -1,
+                        budget: jsonItem["budget"] as? Int ?? -1,
                         genres: [],
                         original_language: jsonItem["original_language"] as? String ?? "",
                         original_title: jsonItem["original_title"] as? String ?? "",
                         overview: jsonItem["overview"] as? String ?? "",
-                        popularity: Double(jsonItem["popularity"] as? String ?? "") ?? -1.0,
+                        popularity: jsonItem["popularity"] as? Double ?? -1.0,
                         release_date: jsonItem["release_date"] as? String ?? "",
                         revenue: jsonItem["revenue"] as? Int ?? -1,
                         runtime: jsonItem["runtime"] as? Int ?? -1,

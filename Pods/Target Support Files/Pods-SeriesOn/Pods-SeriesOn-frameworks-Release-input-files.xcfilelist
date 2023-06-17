@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-SeriesOn/Pods-SeriesOn-frameworks.sh
+${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
+${BUILT_PRODUCTS_DIR}/SwiftCSV/SwiftCSV.framework
