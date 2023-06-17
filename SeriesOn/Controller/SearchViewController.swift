@@ -8,7 +8,8 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
+    var movies: [Movie] = [] // 영화 데이터를 담을 배열
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

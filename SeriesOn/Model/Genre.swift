@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Genre{
+class Genre: Codable{
     var id: Int
     var name: String
     

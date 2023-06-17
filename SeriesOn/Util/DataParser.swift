@@ -1,73 +1,63 @@
 import Foundation
 
 class DataParser {
-    static func parseMoviesData(fromCSVFile csvFilePath: String) -> [Movie] {
+    static func parseMoviesData(fromJSONFile jsonFilePath: String) -> [Movie] {
         var movies: [Movie] = []
         
-        // budget, id, original_language, original_title, overview, release_date, revenue, runtime, title, status, tagline vote_average, vote_count
         do {
-            let filePath = URL(fileURLWithPath: csvFilePath)
-            let csvString = try String(contentsOf: filePath)
-            let lines = csvString.components(separatedBy: .newlines)
+            let filePath = URL(fileURLWithPath: jsonFilePath)
+            let jsonData = try Data(contentsOf: filePath)
             
-            var movies: [Movie] = []
-            let headers = lines[0].components(separatedBy: ",")
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             
-            // 필요한 인덱스 확인
-            let budget_idx = headers.firstIndex(of: "budget") ?? 0
-            let id_idx = headers.firstIndex(of: "id") ?? 0
-            let original_language_idx = headers.firstIndex(of: "original_language") ?? 0
-            let original_title_idx = headers.firstIndex(of: "original_title") ?? 0
-            let overview_idx = headers.firstIndex(of: "overview") ?? 0
-            let release_date_idx = headers.firstIndex(of: "release_date") ?? 0
-            let revenue_idx = headers.firstIndex(of: "revenue") ?? 0
-            let runtime_idx = headers.firstIndex(of: "runtime") ?? 0
-            let title_idx = headers.firstIndex(of: "title") ?? 0
-            let status_idx = headers.firstIndex(of: "status") ?? 0
-            let tagline_idx = hearders.firstIndex(of: "tagline") ?? 0
-            let vote_average_idx = headers.firstIndex(of: "vote_average") ?? 0
-            let vote_count_idx = headers.firstIndex(of: "vote_count") ?? 0
+            let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String: Any]]
             
-            for line in lines.dropFirst() {
-                let data = line.components(separatedBy: ",")
-                print(data.count)
-                
-                // 필요한 데이터 추출
-                let budget = Int(data[budget_idx]) ?? -1
-                let id = Int(data[id_idx]) ?? -1
-                let original_language = data[original_language_idx]
-                let original_title = data[original_title_idx]
-                let overview = data[overview_idx]
-                let release_date = data[release_date_idx]
-                let revenue = Int(data[revenue_idx]) ?? -1
-                let runtime = Float(data[runtime_idx]) ?? -1.0
-                let title = data[title_idx]
-                let status = data[status_idx]
-                let tagline = data[tagline_idx]
-                let vote_average = Float(data[vote_average_idx]) ?? -1.0
-                let vote_count = Int(data[vote_count_idx]) ?? -1
-                        // 장르 데이터 처리
-//                var genres: [Genre] = []
-//                let genresData = genresString.replacingOccurrences(of: "'", with: "\"").data(using: .utf8)
-//                if let genresData = genresData,
-//                   let genresArray = try JSONSerialization.jsonObject(with: genresData, options: []) as? [[String: Any]] {
-//                    for genreData in genresArray {
-//                        if let id = genreData["id"] as? Int,
-//                           let name = genreData["name"] as? String {
-//                            let genre = Genre(id: id, name: name)
-//                            genres.append(genre)
-//                        }
-//                    }
-//                }
-                
-                // Movie 객체 생성
-                let movie = Movie(id: id, budget: budget, original_language: original_language, original_title: original_title, overview: overview, release_date: release_date, revenue: revenue, runtime: runtime, title: title, status: status, tagline:tagline, vote_average: vote_average, vote_count: vote_count)
-                movies.append(movie)
+            if let jsonArray = jsonArray {
+                for jsonItem in jsonArray {
+                    let movie = Movie(
+                        id: Int(jsonItem["id"] as? String ?? "") ?? -1,
+                        budget: Int(jsonItem["budget"] as? String ?? "") ?? -1,
+                        genres: [],
+                        original_language: jsonItem["original_language"] as? String ?? "",
+                        original_title: jsonItem["original_title"] as? String ?? "",
+                        overview: jsonItem["overview"] as? String ?? "",
+                        popularity: Double(jsonItem["popularity"] as? String ?? "") ?? -1.0,
+                        release_date: jsonItem["release_date"] as? String ?? "",
+                        revenue: jsonItem["revenue"] as? Int ?? -1,
+                        runtime: jsonItem["runtime"] as? Int ?? -1,
+                        status: jsonItem["status"] as? String ?? "",
+                        tagline: jsonItem["tagline"] as? String ?? "",
+                        title: jsonItem["title"] as? String ?? "",
+                        vote_average: jsonItem["vote_average"] as? Double ?? -1.0,
+                        vote_count: jsonItem["vote_count"] as? Int ?? -1
+                    )
+                    
+                    if let genresString = jsonItem["genres"] as? String {
+                        // 문자열에서 따옴표를 제거하여 유효한 JSON 배열 형태로 변환
+                        let genresStringJson = genresString.replacingOccurrences(of: "'", with: "\"")
+                        
+                        if let genresData = genresStringJson.data(using: .utf8) {
+                            // JSON 배열 디코딩
+                            if let genresArray = try? JSONSerialization.jsonObject(with: genresData, options: []) as? [[String: Any]] {
+                                var genres: [Genre] = []
+                                for genreItem in genresArray {
+                                    if let genreId = genreItem["id"] as? Int,
+                                       let genreName = genreItem["name"] as? String {
+                                        let genre = Genre(id: genreId, name: genreName)
+                                        genres.append(genre)
+                                    }
+                                }
+                                movie.genres = genres
+                            }
+                        }
+                    }
+
+                    movies.append(movie)
+                }
             }
-            return movies
-            
         } catch {
-            print("Error parsing CSV file: \(error)")
+            print("Error parsing JSON file: \(error)")
         }
 
         return movies
