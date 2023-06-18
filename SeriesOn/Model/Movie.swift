@@ -24,8 +24,10 @@ class Movie: Codable{
     var title: String
     var vote_average: Double
     var vote_count: Int
+    var poster_path: String
+    var imdb_id: String
     
-    init(id: Int, budget: Int, genres: [Genre], original_language: String, original_title: String, overview: String, popularity: Double, release_date: String, revenue: Int, runtime: Int, status: String, tagline: String, title: String, vote_average: Double, vote_count: Int) {
+    init(id: Int, budget: Int, genres: [Genre], original_language: String, original_title: String, overview: String, popularity: Double, release_date: String, revenue: Int, runtime: Int, status: String, tagline: String, title: String, vote_average: Double, vote_count: Int, poster_path: String, imdb_id: String) {
         self.id = id
         self.budget = budget
         self.genres = genres
@@ -41,6 +43,8 @@ class Movie: Codable{
         self.title = title
         self.vote_average = vote_average
         self.vote_count = vote_count
+        self.poster_path = poster_path
+        self.imdb_id = imdb_id
     }
     
 }

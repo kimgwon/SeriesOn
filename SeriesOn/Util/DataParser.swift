@@ -1,6 +1,35 @@
 import Foundation
 
 class DataParser {
+    static func parseLinks(fromJSONFile jsonFilePath: String) -> [Link] {
+        var links: [Link] = []
+        
+        do {
+            let filePath = URL(fileURLWithPath: jsonFilePath)
+            let jsonData = try Data(contentsOf: filePath)
+            
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String: Any]]
+            
+            if let jsonArray = jsonArray {
+                for jsonItem in jsonArray {
+                    let link = Link(
+                        movieId: jsonItem["movieId"] as? Int ?? -1,
+                        imdbId: jsonItem["imdbId"] as? String ?? "",
+                        tmdbID: jsonItem["tmdbId"] as? Int ?? -1
+                    )
+                    links.append(link)
+                }
+            }
+        } catch {
+            print("Error parsing JSON file: \(error)")
+        }
+
+        return links
+    }
+    
     static func parseMoviesData(fromJSONFile jsonFilePath: String) -> [Movie] {
         var movies: [Movie] = []
         
@@ -30,7 +59,9 @@ class DataParser {
                         tagline: jsonItem["tagline"] as? String ?? "",
                         title: jsonItem["title"] as? String ?? "",
                         vote_average: jsonItem["vote_average"] as? Double ?? -1.0,
-                        vote_count: jsonItem["vote_count"] as? Int ?? -1
+                        vote_count: jsonItem["vote_count"] as? Int ?? -1,
+                        poster_path: Bundle.main.resourcePath?.appending("/poster_sample.jpg") ?? "",
+                        imdb_id: jsonItem["imdb_id"] as? String ?? ""
                     )
                     
                     if let genresString = jsonItem["genres"] as? String {

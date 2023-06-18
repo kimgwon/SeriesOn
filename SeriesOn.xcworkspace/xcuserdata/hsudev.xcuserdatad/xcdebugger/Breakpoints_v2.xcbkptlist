@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "600C53FA-534F-4A68-81D3-DE34408180E5"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D141F6DB-DD66-43E7-9D10-9BA1B4F5B6B2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeriesOn/Util/DataParser.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "parseMoviesData(fromJSONFile:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D141F6DB-DD66-43E7-9D10-9BA1B4F5B6B2 - 7076d9e42ce5340d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SeriesOn.DataParser.parseMoviesData(fromJSONFile: Swift.String) -&gt; Swift.Array&lt;SeriesOn.Movie&gt;"
+                  moduleName = "SeriesOn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hsudev/Desktop/SeriesOn/SeriesOn/Util/DataParser.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "6640">
+               </Location>
+               <Location
+                  uuid = "D141F6DB-DD66-43E7-9D10-9BA1B4F5B6B2 - 7076d9e42ce5340d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SeriesOn.DataParser.parseMoviesData(fromJSONFile: Swift.String) -&gt; Swift.Array&lt;SeriesOn.Movie&gt;"
+                  moduleName = "SeriesOn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hsudev/Desktop/SeriesOn/SeriesOn/Util/DataParser.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "7004">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
