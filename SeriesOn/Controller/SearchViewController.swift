@@ -3,6 +3,7 @@ import UIKit
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let AD = UIApplication.shared.delegate as? AppDelegate
     var movies: [Movie] = [] // 영화 데이터를 담을 배열
+    var credits: [Credit] = [] // 배우 데이터 담을 배열
 
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!
@@ -18,6 +19,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         if let movies = AD?.movies{
             self.movies = movies
         }
+        if let credits = AD?.credits{
+            self.credits = credits
+        }
+
 
         
         searchTableView.rowHeight = 120
@@ -38,11 +43,24 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             return
         }
         
+        // 배우명 또는 영화 제목으로 검색 결과를 찾기 위해 movies 배열을 순회
+        let searchResultsActor = credits.filter { credit in
+            credit.cast.contains { cast in
+                cast.name.localizedCaseInsensitiveContains(searchQuery)
+            }
+        }.compactMap { credit in
+            movies.first { movie in
+                movie.id == credit.Id
+            }
+        }
+        
         // 검색 결과 업데이트
-        let searchResults = movies.filter { movie in
+        let searchResultsMovie = movies.filter { movie in
             // 영화 제목 또는 배우명에 검색어가 포함되어 있는지 확인
             return movie.title.localizedCaseInsensitiveContains(searchQuery)
         }
+        
+        let searchResults = searchResultsActor + searchResultsMovie
         
         // 검색 결과를 vote_average의 내림차순으로 정렬
         let sortedResults = searchResults.sorted { $0.vote_average > $1.vote_average }

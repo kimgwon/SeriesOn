@@ -1,6 +1,83 @@
 import Foundation
 
 class DataParser {
+    static func parseCredits(fromJSONFile jsonFilePath: String) -> [Credit] {
+        var credits: [Credit] = []
+        
+        do {
+            let filePath = URL(fileURLWithPath: jsonFilePath)
+            let jsonData = try Data(contentsOf: filePath)
+            
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String: Any]]
+            
+            if let jsonArray = jsonArray {
+                for jsonItem in jsonArray {
+                    let credit = Credit(
+                        cast: [],
+                        crew: [],
+                        Id: jsonItem["Id"] as? Int ?? -1
+                    )
+                    
+                    // cast
+                    if let castString = jsonItem["cast"] as? String {
+                        // 문자열에서 따옴표를 제거하여 유효한 JSON 배열 형태로 변환
+                        let castStringJson = castString.replacingOccurrences(of: "'", with: "\"")
+                        
+                        if let castData = castStringJson.data(using: .utf8) {
+                            // JSON 배열 디코딩
+                            if let castArray = try? JSONSerialization.jsonObject(with: castData, options: []) as? [[String: Any]] {
+                                var casts: [Cast] = []
+                                for castItem in castArray {
+                                    if let castCharacter = castItem["character"] as? String,
+                                       let castName = castItem["name"] as? String {
+                                        let cast_ = Cast(character: castCharacter, name: castName)
+                                        casts.append(cast_)
+                                    }
+                                }
+                                credit.cast = casts
+                            }
+                        }
+                    }
+
+                    
+                    // crew
+                    if let crewString = jsonItem["crew"] as? String {
+                        // 문자열에서 따옴표를 제거하여 유효한 JSON 배열 형태로 변환
+                        let crewStringJson = crewString.replacingOccurrences(of: "'", with: "\"")
+                        
+                        if let crewData = crewStringJson.data(using: .utf8) {
+                            
+                            // JSON 배열 디코딩
+                            if let crewArray = try? JSONSerialization.jsonObject(with: crewData, options: []) as? [[String: Any]] {
+
+                                var crews: [Crew] = []
+                                // department, job, name
+                                for crewItem in crewArray {
+                                    if let crewDepartment = crewItem["department"] as? String,
+                                       let crewJob = crewItem["job"] as? String,
+                                       let crewName = crewItem["name"] as? String{
+                                        let crew = Crew(department: crewDepartment, job: crewJob, name: crewName)
+                                        crews.append(crew)
+                                    }
+                                }
+                                credit.crew = crews
+                            }
+                        }
+                    }
+                    credits.append(credit)
+                }
+            }
+        } catch {
+            print("Error parsing JSON file: \(error)")
+        }
+
+        return credits
+    }
+
+    
     static func parseLinks(fromJSONFile jsonFilePath: String) -> [Link] {
         var links: [Link] = []
         

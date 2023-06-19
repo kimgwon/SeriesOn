@@ -33,6 +33,10 @@
 		FEBF7F012A3F0F53000C3A0E /* InterestingVotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBF7F002A3F0F53000C3A0E /* InterestingVotes.swift */; };
 		FEBF7F032A3F150E000C3A0E /* ReviewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBF7F022A3F150E000C3A0E /* ReviewListCell.swift */; };
 		FEBF7F052A3F29C6000C3A0E /* ReviewSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBF7F042A3F29C6000C3A0E /* ReviewSubmitViewController.swift */; };
+		FEEE60CB2A3F58B6006C6064 /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEE60CA2A3F58B6006C6064 /* Cast.swift */; };
+		FEEE60CD2A3F58C4006C6064 /* Crew.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEE60CC2A3F58C4006C6064 /* Crew.swift */; };
+		FEEE60CF2A3F5937006C6064 /* Credit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEE60CE2A3F5937006C6064 /* Credit.swift */; };
+		FEEE60D32A3F6618006C6064 /* credits.json in Resources */ = {isa = PBXBuildFile; fileRef = FEEE60D22A3F6618006C6064 /* credits.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +72,10 @@
 		FEBF7F002A3F0F53000C3A0E /* InterestingVotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingVotes.swift; sourceTree = "<group>"; };
 		FEBF7F022A3F150E000C3A0E /* ReviewListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListCell.swift; sourceTree = "<group>"; };
 		FEBF7F042A3F29C6000C3A0E /* ReviewSubmitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSubmitViewController.swift; sourceTree = "<group>"; };
+		FEEE60CA2A3F58B6006C6064 /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
+		FEEE60CC2A3F58C4006C6064 /* Crew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crew.swift; sourceTree = "<group>"; };
+		FEEE60CE2A3F5937006C6064 /* Credit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credit.swift; sourceTree = "<group>"; };
+		FEEE60D22A3F6618006C6064 /* credits.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = credits.json; path = ../../../../Downloads/credits.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +159,9 @@
 				FEBF7EFC2A3F0EC3000C3A0E /* Review.swift */,
 				FEBF7EFE2A3F0F04000C3A0E /* Author.swift */,
 				FEBF7F002A3F0F53000C3A0E /* InterestingVotes.swift */,
+				FEEE60CA2A3F58B6006C6064 /* Cast.swift */,
+				FEEE60CC2A3F58C4006C6064 /* Crew.swift */,
+				FEEE60CE2A3F5937006C6064 /* Credit.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +191,7 @@
 		FE2F94512A2DCDA100F8DCC0 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				FEEE60D22A3F6618006C6064 /* credits.json */,
 				FEBF7EFA2A3F0800000C3A0E /* movies_metadata.json */,
 				FEBF7EEF2A3EB834000C3A0E /* poster_sample.jpg */,
 				FEBF7EF72A3EFC00000C3A0E /* links.json */,
@@ -277,6 +289,7 @@
 			files = (
 				FEBF7EFB2A3F0800000C3A0E /* movies_metadata.json in Resources */,
 				FEBF7EF02A3EB834000C3A0E /* poster_sample.jpg in Resources */,
+				FEEE60D32A3F6618006C6064 /* credits.json in Resources */,
 				FE2F94472A2DCB5F00F8DCC0 /* LaunchScreen.storyboard in Resources */,
 				FE2F94442A2DCB5F00F8DCC0 /* Assets.xcassets in Resources */,
 				FE2F94422A2DCB5E00F8DCC0 /* Main.storyboard in Resources */,
@@ -343,13 +356,16 @@
 				FE2F943F2A2DCB5E00F8DCC0 /* MainViewController.swift in Sources */,
 				FE2F943B2A2DCB5E00F8DCC0 /* AppDelegate.swift in Sources */,
 				FE30F4B82A3313FD005B86B7 /* SearchViewController.swift in Sources */,
+				FEEE60CF2A3F5937006C6064 /* Credit.swift in Sources */,
 				FEBF7EFF2A3F0F04000C3A0E /* Author.swift in Sources */,
 				FE2F94562A2DD06000F8DCC0 /* Movie.swift in Sources */,
+				FEEE60CB2A3F58B6006C6064 /* Cast.swift in Sources */,
 				FEBF7F012A3F0F53000C3A0E /* InterestingVotes.swift in Sources */,
 				FE2F945A2A2DD23300F8DCC0 /* Genre.swift in Sources */,
 				FEBF7F052A3F29C6000C3A0E /* ReviewSubmitViewController.swift in Sources */,
 				FE2F94582A2DD22900F8DCC0 /* Info.swift in Sources */,
 				FE1049272A3302D900C64535 /* DataParser.swift in Sources */,
+				FEEE60CD2A3F58C4006C6064 /* Crew.swift in Sources */,
 				FE2F943D2A2DCB5E00F8DCC0 /* SceneDelegate.swift in Sources */,
 				FEBF7F032A3F150E000C3A0E /* ReviewListCell.swift in Sources */,
 			);

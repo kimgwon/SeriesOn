@@ -1,10 +1,12 @@
 import UIKit
 
 class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var all: UILabel!
     @IBOutlet weak var idField: UILabel!
     @IBOutlet weak var titleField: UILabel!
     @IBOutlet weak var dateField: UILabel!
     @IBOutlet weak var languageField: UILabel!
+    @IBOutlet weak var runtimeField: UILabel!
     @IBOutlet weak var genreField: UILabel!
     @IBOutlet weak var taglineField: UILabel!
     @IBOutlet weak var overviewField: UILabel!
@@ -24,6 +26,10 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        all.layer.borderWidth = 1
+        all.layer.borderColor = UIColor.white.cgColor
+        all.layer.cornerRadius = 2
 
         reviewTableView.rowHeight = 150
         reviewTableView.dataSource = self
@@ -34,6 +40,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             titleField.text = selectedMovie.title
             dateField.text = selectedMovie.release_date
             languageField.text = selectedMovie.original_language
+            runtimeField.text = String(selectedMovie.runtime/60) + "h " + String(selectedMovie.runtime%60) + "m"
             taglineField.text = selectedMovie.tagline
             overviewField.text = selectedMovie.overview
             posterView.image = UIImage(named: selectedMovie.poster_path)
@@ -46,8 +53,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         backButton.addTarget(self, action: #selector(back(_:)), for: .touchUpInside)
         submitButton.addTarget(self, action: #selector(showModal(_:)), for: .touchUpInside)
         
-        fetchReviews(for: selectedMovie.imdb_id)
-        
+        // fetchReviews(for: selectedMovie.imdb_id)
     }
     
     func fetchReviews(for imdbId: String) {
@@ -94,7 +100,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                           let reviewText = reviewData["reviewText"] as? String,
                           let reviewTitle = reviewData["reviewTitle"] as? String,
                           let submissionDate = reviewData["submissionDate"] as? String else {
-                        print("리뷰 데이터를 파싱할 수 없습니다")
                         continue
                     }
                     
@@ -108,7 +113,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                     self.reviewTableView.reloadData()
                 }
             } catch {
-                print("리뷰 데이터 파싱 오류: \(error.localizedDescription)")
             }
         }
         dataTask.resume()
@@ -137,6 +141,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         reviewCount.text = "댓글 " + String(reviews.count)
         
+        
         // 셀에 리뷰 정보 표시
         cell.r_id.text = target.author
         cell.r_date.text = target.submissionDate
@@ -144,7 +149,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         cell.r_rate.text = String(target.authorRating) + "점"
         cell.r_text.text = target.reviewText
         cell.r_title.text = target.reviewTitle
-        
+                
         return cell
     }
 
