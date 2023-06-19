@@ -69,6 +69,7 @@ class DataParser {
                     }
                     credits.append(credit)
                 }
+                dump(credits)
             }
         } catch {
             print("Error parsing JSON file: \(error)")

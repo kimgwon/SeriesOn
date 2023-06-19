@@ -53,7 +53,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         backButton.addTarget(self, action: #selector(back(_:)), for: .touchUpInside)
         submitButton.addTarget(self, action: #selector(showModal(_:)), for: .touchUpInside)
         
-        // fetchReviews(for: selectedMovie.imdb_id)
+        fetchReviews(for: selectedMovie.imdb_id)
     }
     
     func fetchReviews(for imdbId: String) {
