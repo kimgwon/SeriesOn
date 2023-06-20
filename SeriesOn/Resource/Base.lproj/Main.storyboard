@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="systemGreenColor"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
@@ -148,7 +148,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ODK-L5-AGB" secondAttribute="trailing" id="p9k-pO-nKb"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Main" id="7Zb-6T-qub">
+                    <tabBarItem key="tabBarItem" title="홈" image="homekit" catalog="system" id="7Zb-6T-qub">
                         <color key="badgeColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <connections>
@@ -271,7 +271,7 @@
                             <constraint firstItem="DXk-hF-SGI" firstAttribute="leading" secondItem="KpH-8g-PBK" secondAttribute="trailing" constant="5" id="xQd-Go-PTF"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="검색" id="kqs-mw-q9V"/>
+                    <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" id="kqs-mw-q9V"/>
                     <connections>
                         <outlet property="countField" destination="jbv-3Q-pBI" id="SUi-m9-mqV"/>
                         <outlet property="searchButton" destination="DXk-hF-SGI" id="dNP-K7-XH0"/>
@@ -302,7 +302,7 @@
                         <viewLayoutGuide key="safeArea" id="Mqf-eh-xDq"/>
                         <color key="backgroundColor" white="0.10000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="상세" id="7Uv-Ng-QgB"/>
+                    <tabBarItem key="tabBarItem" title="상세" image="plus.circle" catalog="system" id="7Uv-Ng-QgB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r85-bL-ysO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -319,7 +319,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SkE-7f-0Bg">
                                 <rect key="frame" x="189.66666666666666" y="67" width="14" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWN-OK-5sB">
@@ -671,7 +671,11 @@
             <point key="canvasLocation" x="1251.145038167939" y="779.57746478873241"/>
         </scene>
     </scenes>
+    <color key="tintColor" systemColor="systemGreenColor"/>
     <resources>
+        <image name="homekit" catalog="system" width="128" height="104"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="plus.circle" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
