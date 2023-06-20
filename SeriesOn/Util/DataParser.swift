@@ -69,7 +69,12 @@ class DataParser {
                     }
                     credits.append(credit)
                 }
-                dump(credits)
+                for credit in credits{
+                    if credit.cast.isEmpty{
+                        dump(credits)
+                    }
+                }
+                
             }
         } catch {
             print("Error parsing JSON file: \(error)")
