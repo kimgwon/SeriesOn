@@ -65,7 +65,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
 
             self.movieGroupTableView.reloadData()
-            print(action.title)
+            
         }
         
         popupButton.menu = UIMenu(title: "카테고리", options: .displayInline,children: [

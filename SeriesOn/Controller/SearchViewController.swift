@@ -22,8 +22,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         if let credits = AD?.credits{
             self.credits = credits
         }
-
-
         
         searchTableView.rowHeight = 120
         searchTableView.dataSource = self
